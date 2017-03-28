@@ -142,6 +142,10 @@ class API(object):
             'X-Bunq-Client-Response-Id'
         ]
 
+        # After some debugging, I found that res.headers.items() contains
+        # the header names in lowercase.  This causes verification to fail.
+        # See https://github.com/kennethreitz/requests/issues/1561
+        # Hope this is useful!
         msg = '%s\n%s\n\n%s' % (
             res.status_code,
             '\n'.join(
